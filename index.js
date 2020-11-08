@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-const app = express()
+//const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig.js')
@@ -12,6 +12,15 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const dBase = require('./config/database')
+
+
+dBase.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' + err))
+
+const app = express();
+
+
 
 //  setup ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -54,7 +63,7 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
-app.use('/cta', require('./routes/ctas'))
+app.use('/ctas', require('./routes/ctas'))
 
 app.listen(8000, ()=>{
     console.log('you\'re listening to the spooky sounds of port 8000')
