@@ -7,6 +7,12 @@ const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 
+
+const exphbs = require('express-handlebars');
+const bodyParser = require('body-parser');
+const path = require('path');
+const dBase = require('./config/database')
+
 //  setup ejs and ejs layouts
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
@@ -48,6 +54,8 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
-app.listen(process.env.PORT, ()=>{
+app.use('/cta', require('./routes/ctas'))
+
+app.listen(8000, ()=>{
     console.log('you\'re listening to the spooky sounds of port 8000')
 })
