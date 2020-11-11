@@ -1,22 +1,31 @@
 const express = require('express')
-const routerAction = express.Router()
-const dBase = require('../models')
-const router = require('../controllers/auth.js')
-// const Cta = require('../cta.js')
-const callToAction = require('../models/calls')
+const router = express.Router()
+const dBase = require('../config/database')
+const calls = require('../models/calls')
 
 
 //Get list of items
-// routerAction.get('/ctas', (req, res) => 
-//   callToAction.findAll()
-//     .then(ctas => {
-//         console.log('ctas')
-//         res.sendStatus(200)
-//       })
-//     .catch(err => console.log(err)));
+// router.get('/', (req, res) => res.send('CTAS!'))
+router.get('/', (req, res) => 
+  calls.findAll()
+  .then(calls => {
+    console.log(calls) 
+    res.sendStatus(200)
+  })
+  .catch(err => console.log(err)))
 
 
-// router.get('/ctas', (req, res) => res.send('HELLO'))
+
+// dBase.calls.findAll()
+//     .then(ctas => res.render('ctas', {
+//         ctas
+//       }))
+//     .catch(err => res.render('error', {error: err})));
+
+
+
+
+    // router.get('/ctas', (req, res) => res.send('HELLO'))
 
 // //Adding postings to website
 // router.get('/add', (req, res) => {
@@ -61,4 +70,4 @@ const callToAction = require('../models/calls')
 //         console.log(numRowsChanged)
 //     });
 
-module.exports = routerAction
+module.exports = router

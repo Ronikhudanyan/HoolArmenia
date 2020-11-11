@@ -20,11 +20,18 @@ dBase.authenticate()
 
 const app = express();
 
+//Handlebars
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
 
 
 //  setup ejs and ejs layouts
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+
+// setting static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // body parser middleware (this makes req.body work)
 app.use(express.urlencoded({extended: false}))
@@ -63,7 +70,7 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
-app.use('/ctas', require('./routes/ctas'))
+app.use('/ctas', require('./routes/ctas.js'))
 
 app.listen(8000, ()=>{
     console.log('you\'re listening to the spooky sounds of port 8000')

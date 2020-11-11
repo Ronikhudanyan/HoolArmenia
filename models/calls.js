@@ -24,3 +24,31 @@ module.exports = (sequelize, DataTypes) => {
   });
   return calls;
 };
+
+// // module.exports = Calls
+
+
+
+
+// const Sequelize = require('sequelize');
+// const dBase = require('../config/database');
+
+// const calls = dBase.define('call', {
+//   title: {
+//     type: Sequelize.STRING
+//   },
+//   description: {
+//     type: Sequelize.STRING
+//   },
+//   contact_email: {
+//     type: Sequelize.STRING
+//   },
+//   contact_phone: {
+//     type: Sequelize.STRING
+//   },
+// });
+
+// // calls.sync().then(() => {
+// //   console.log('table created');
+// // });
+// module.exports = calls;
