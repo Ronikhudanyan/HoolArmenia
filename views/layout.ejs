@@ -3,19 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>818 Express Auth</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+    crossorigin="anonymous">
+
+
+  <link rel="stylesheet" href="/css/style.css">
+    <title>Hands Off Our Lands</title>
 </head>
 <body>
-    <header>
-        <h1>818 Express Auth</h1>
+    <header class="inner">
+        <h2><a href="/"><i class="fas fa-code"></i>
+            Hands Off Our Lands</a></h2>
         <nav>
             <ul>
                 <% if (!currentUser) {%>
                     <li><a href="/auth/signup">Sign Up</a></li>
                     <li><a href="/auth/login">Log In</a></li>
+                    <li><a href="/">Home</a></li>
                 <% } else { %>
                     <li><a href="/auth/logout">Log Out</a></li>
                     <li><a href="/profile">Profile</a></li>
+                    <li><a href="/ctas">Take Action</a></li>
+                    <li><a href="/ctas/add">Add Action Item</a></li>
                 <% } %> 
             </ul>
         </nav>

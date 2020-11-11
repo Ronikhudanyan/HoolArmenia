@@ -1,20 +1,29 @@
 const express = require('express')
 const router = express.Router()
 const dBase = require('../config/database')
-const calls = require('../models/calls')
+const callsToAction = require('../calls')
+// const calls = require('../calls')
 
 
 //Get list of items
 // router.get('/', (req, res) => res.send('CTAS!'))
 router.get('/', (req, res) => 
-  calls.findAll()
-  .then(calls => {
-    console.log(calls) 
-    res.sendStatus(200)
+  callsToAction.findAll()
+  .then(calls=> {
+    res.render('ctas', {
+      calls
+    })
   })
   .catch(err => console.log(err)))
 
 
+// // Display add gig form
+// router.get('/add', (req, res) => res.render('add'));
+
+// // Add a gig
+// router.post('/add', (req, res) => {
+//   let { title, description, contact_email, contact_phone } = req.body;
+//   let errors = [];
 
 // dBase.calls.findAll()
 //     .then(ctas => res.render('ctas', {
