@@ -21,8 +21,8 @@ dBase.authenticate()
 const app = express();
 
 //Handlebars
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
-app.set('view engine', 'handlebars')
+// app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+// app.set('view engine', 'handlebars')
 
 
 //  setup ejs and ejs layouts
@@ -71,7 +71,9 @@ app.get('/profile', isLoggedIn, (req, res)=>{
 })
 
 app.use('/ctas', require('./routes/ctas.js'))
-
+app.get('/ctas', (req, res) =>{
+    res.render('ctas')
+})
 app.listen(8000, ()=>{
     console.log('you\'re listening to the spooky sounds of port 8000')
 })
