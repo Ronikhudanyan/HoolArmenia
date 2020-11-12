@@ -8,7 +8,7 @@ const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 
 
-const exphbs = require('express-handlebars');
+// const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const path = require('path');
 const dBase = require('./config/database')

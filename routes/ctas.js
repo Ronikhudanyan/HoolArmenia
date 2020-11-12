@@ -2,7 +2,10 @@ const express = require('express')
 const router = express.Router()
 const dBase = require('../config/database')
 const callsToAction = require('../calls')
-// const calls = require('../calls')
+const Sequelize = require('sequelize');
+// const calls = require('../calls');
+const Op = Sequelize.Op;
+
 
 
 //Get list of items
@@ -13,6 +16,7 @@ router.get('/', (req, res) =>
     res.render('ctas', {
       calls
     })
+    console.log(calls)
   })
   .catch(err => console.log(err)))
 
@@ -21,17 +25,32 @@ router.get('/', (req, res) =>
 // Display add gig form
 router.get('/add', (req, res) => res.render('add'));
 
+
+
 // Add a gig
 router.post('/add', (req, res) => {
-const data = {
-  title: "HR 1123",
-  description: "This is a house resolution that will help the people of Armenia and Artsakh",
-  contact_email: "Gov@gov.us",
-  contact_phone: "555-555-5555"
-  }
+  let { title, description, contact_email, contact_phone } = req.body;
+  let error = []
 
 
-  let { title, technologies, budget, description, contact_email } = req.body;
+  callsToAction.create({
+    title,
+    description,
+    contact_email,
+    contact_phone,
+  })
+  .then(call => res.redirect('/ctas'))
+  .catch(err => console.log(err))
+})
+
+router.get('/search', (req, res) => {
+  let {term} = req.query
+
+  term = term.toLocaleLowerCase()
+
+  calls.findAll({ where: { title: { [Op.like]: '%' + term + '%' } } })
+    .then(calls => res.render('ctas', { calls }))
+    .catch(err => res.render('error', {error: err}));
 })
 module.exports = router;
 
