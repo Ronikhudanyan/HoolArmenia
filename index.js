@@ -6,12 +6,16 @@ const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
+const axios = require ('axios')
 
 
-// const exphbs = require('express-handlebars');
+//Calls to action Vars
 const bodyParser = require('body-parser');
 const path = require('path');
 const dBase = require('./config/database')
+const mod = require ('./calls')
+
+//API Vars 
 
 
 dBase.authenticate()
@@ -19,10 +23,6 @@ dBase.authenticate()
   .catch(err => console.log('Error: ' + err))
 
 const app = express();
-
-//Handlebars
-// app.engine('handlebars', exphbs({defaultLayout: 'main'}))
-// app.set('view engine', 'handlebars')
 
 
 //  setup ejs and ejs layouts
@@ -72,8 +72,23 @@ app.get('/profile', isLoggedIn, (req, res)=>{
 
 app.use('/ctas', require('./routes/ctas.js'))
 app.get('/ctas', (req, res) =>{
-    res.render('ctas')
+    mod.findAll()
+    .then(calls =>{
+     res.render('ctas', {calls:calls})   
+    })    
+    
 })
+
+
+
+app.use('/news', require('./routes/news.js'))
+app.get('/news', (req,res) =>{
+    res.render('news', {articles: newsAPI.data})
+})
+
+// const newsRouter = require('./routes/news')
+// app.use('/news', newsRouter)
+
 
 
 
