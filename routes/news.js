@@ -21,11 +21,12 @@ const axios = require('axios')
 
 
 router.get('', async(req, res) =>{
-    res.render('news')
+   
     try {
-        const newsAPI = await axios.get(`http://newsapi.org/v2/top-headlines?country=us&apiKey=1d9ca5b13652436b801f9572b8878b27`)
-        res.render('news', { articles : newsAPI.data })
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=armenia&apiKey=1d9ca5b13652436b801f9572b8878b27`)
+        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
         console.log(newsAPI.data)
+        res.render('news', { articles : newsAPI.data.articles })
     } catch (err) {
         if(err.response){
             console.log(err.response.data)
