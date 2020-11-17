@@ -82,6 +82,7 @@ app.get('/ctas', (req, res) =>{
 
 
 app.use('/news', require('./routes/news.js'))
+app.use('/article', require('./routes/news.js'))
 app.get('/news', (req,res) =>{
     res.render('news', {articles: newsAPI.data})
 })

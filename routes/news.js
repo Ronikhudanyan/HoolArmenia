@@ -1,22 +1,6 @@
 const express = require('express')
 const router = express.Router()
 const axios = require('axios')
-// const NewsAPI = require('newsapi');
-// const newsapi = new NewsAPI('1d9ca5b13652436b801f9572b8878b27');
-
-// newsapi.v2.everything({
-//     q: 'armenia',
-//     sources: 'bbc-news,the-verge',
-//     domains: 'bbc.co.uk, techcrunch.com',
-//     from: '2017-12-01',
-//     to: '2017-12-12',
-//     language: 'en',
-//     sortBy: 'relevancy',
-//     page: 2
-//   }).then(response => {
-//     console.log(response);
-//   })
-
 
 
 
@@ -41,21 +25,54 @@ router.get('', async(req, res) =>{
         }
     }
 
-    // axios.get(`http://newsapi.org/v2/top-headlines?country=us&apiKey=1d9ca5b13652436b801f9572b8878b27`)
-    // .then(response => {
-    //     console.log(response.data)
-    //     response.render('news', {articles: response.data })
-    // })
-    // //     res.render('news', { articles : newsAPI.data })
+
+})
 
 
 
 
+router.get('/:id', async(req, res) => {
+    let articleURL = req.query.articleURL
+
+    try {
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=armenia&apiKey=1d9ca5b13652436b801f9572b8878b27&s=${articleURL}`)
+        res.render('newsSingle', { article : newsAPI.url })
+    } catch (err) {
+        if(err.response) {
+            res.render('newsSingle', { article : null })
+            console.log(err.response.data)
+            console.log(err.response.status)
+            console.log(err.response.headers)
+        } else if(err.requiest) {
+            res.render('newsSingle', { article : null })
+            console.log(err.requiest)
+        } else {
+            res.render('newsSingle', { article : null })
+            console.error('Error', err.message)
+        }
+    } 
+})
 
 
-
-
-
+router.post('/', async(req, res) => {
+    let term = req.body.term
+    try {
+        const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=armenia&apiKey=1d9ca5b13652436b801f9572b8878b27/search?term=${term}`)
+        res.render('newsSearch', { articles : newsAPI.url })
+    } catch (err) {
+        if(err.response) {
+            res.render('newsSearch', { articles : null })
+            console.log(err.response.data)
+            console.log(err.response.status)
+            console.log(err.response.headers)
+        } else if(err.requiest) {
+            res.render('newsSearch', { articles : null })
+            console.log(err.requiest)
+        } else {
+            res.render('newsSearch', { articles : null })
+            console.error('Error', err.message)
+        }
+    } 
 })
 
 module.exports = router
