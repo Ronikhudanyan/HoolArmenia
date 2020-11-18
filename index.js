@@ -7,6 +7,7 @@ const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 const axios = require ('axios')
+var methodOverride = require('method-override');
 
 
 //Calls to action Vars
@@ -70,6 +71,7 @@ app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
 
+app.use(methodOverride('_method'));
 app.use('/ctas', require('./routes/ctas.js'))
 app.get('/ctas', (req, res) =>{
     mod.findAll()

@@ -1,5 +1,11 @@
-<h1>CTA template</h1>
+<h1>Current Calls to Actions That Need Your Help</h1>
 
+<style>
+h1{
+  text-align: center;
+    margin-top: 3;
+}
+</style>
 <section id="gigs" class="container">
     <h1>Current Action Alerts!</h1>
     <% calls.forEach(listOfCalls=>{ %>
@@ -9,7 +15,10 @@
       <ul>
         <li>Contact Email:<%= listOfCalls.conact_email %></li>
         <li>Contact Phone:<%= listOfCalls.contact_phone %></li>
-        <li><a href="#" class="btn btn-reverse">Apply Now</a></li>
+        <li><a href="/profile" class="btn btn-reverse">Take Action</a></li>
+        <form method="POST" action="/ctas/<%= listOfCalls.id %>/?_method=DELETE">
+          <input type="submit" value="Delete">
+        </form>
       </ul>
       <div class="tech">
         <small></span></small>

@@ -1,4 +1,6 @@
 <h2>Login</h2>
+
+<body>
 <div class="logins"></div>
 <form class="forming" method="POST" action="/auth/login">
     <label for="auth-email">Email</label>
@@ -10,19 +12,26 @@
     <input type="submit" value="Log In">
 </form>
 </div>
-
+</body>
 
 <style>
+    body{
+        background-image: url("../img/arm.jpg");
+       
+    }
     .logins {
       display: table;
       width: 100%;
       text-align: center;
+      height: 100%;
     }
-    /* .forming {
-        display: table-cell;
-   text-align: center;
-   vertical-align: middle;
-    } */
+    .forming {
+        width: 200px;
+        border: 15px solid grey;
+        margin-top: 200px;
+        margin-left: 550px;
+        background-color: grey;
+    }
    h2{
        text-align: center;
    }

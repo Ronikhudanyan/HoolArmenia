@@ -3,6 +3,8 @@ const router = express.Router()
 const dBase = require('../config/database')
 const callsToAction = require('../calls')
 const Sequelize = require('sequelize');
+const db = require('../models');
+const calls = require('../calls');
 // const calls = require('../calls');
 const Op = Sequelize.Op;
 
@@ -52,5 +54,15 @@ router.get('/search', (req, res) => {
     .then(calls => res.render('ctas', { calls }))
     .catch(err => res.render('error', {error: err}));
 })
+
+router.delete('/ctas/:id', async(req, res)=>{
+  let entry = await calls.findOne({where: {id: req.params.id}})
+  calls.destroy()
+  .then(calls => res.redirect('/ctas'))
+  .catch(err => console.log(err))
+
+
+})
+
 module.exports = router;
 
