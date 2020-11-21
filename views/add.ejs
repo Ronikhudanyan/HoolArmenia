@@ -1,0 +1,41 @@
+<h1>Add An Action Item</h1>
+<style>
+
+  h1{
+    text-align: center;
+      margin-top: 3;
+  }
+</style>
+<section id="add" class="container">
+    <div class="form-wrap">
+      <h1>Add an Action Item</h1>
+      <p>let your voice be heard!</p>
+      <form action="/ctas/add" method="POST">
+        <div class="input-group">
+          <label for="title">Call to Action</label>
+          <input type="text" name="title" id="title" class="input-box" placeholder="eg. House Resolution 1123"
+            maxlength="100" required>
+        </div>
+        <div class="input-group">
+          <label for="technologies">Contact Name and Phone</label>
+          <input type="text" name="contact_phone" id="technologies" class="input-box" placeholder="eg. Kevin McCarthy 555-555-5555"
+          maxlength="100">
+        </div>
+        <div class="input-group">
+          <label for="budget">Contact Name and Email</label>
+          <input type="text" name="contact_email" id="budget" class="input-box" placeholder="eg. Kevin McCarthy Kevin@gov.us">
+        </div>
+        <div class="input-group">
+          <label for="description">Description</label>
+          <input type="text" name="description" id="description" class="input-box" placeholder="Describe the details of the call to Action">
+            
+        </div>
+        <!-- <div class="input-group">
+          <label for="budget">Contact Email</label>
+          <input type="email" name="contact_email" id="contactemail" class="input-box" placeholder="Enter an email"
+            required>
+        </div> -->
+        <input type="submit" value="Add an Action Item" class="btn btn-reverse">
+      </form>
+    </div>
+  </section>

@@ -1,15 +1,38 @@
 require('dotenv').config()
 const express = require('express')
-const app = express()
+//const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
 const isLoggedIn = require('./middleware/isLoggedIn')
 
+const axios = require ('axios')
+var methodOverride = require('method-override');
+
+
+//Calls to action Vars
+const bodyParser = require('body-parser');
+const path = require('path');
+const dBase = require('./config/database')
+const mod = require ('./calls')
+
+//API Vars 
+
+
+dBase.authenticate()
+  .then(() => console.log('Database connected...'))
+  .catch(err => console.log('Error: ' + err))
+
+const app = express();
+
 //  setup ejs and ejs layouts
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
+
+// setting static folder
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 // body parser middleware (this makes req.body work)
 app.use(express.urlencoded({extended: false}))
@@ -47,6 +70,30 @@ app.get('/', (req, res)=>{
 app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
+
+app.use(methodOverride('_method'));
+app.use('/ctas', require('./routes/ctas.js'))
+app.get('/ctas', (req, res) =>{
+    mod.findAll()
+    .then(calls =>{
+     res.render('ctas', {calls:calls})   
+    })    
+    
+})
+
+
+
+app.use('/news', require('./routes/news.js'))
+app.use('/article', require('./routes/news.js'))
+app.get('/news', (req,res) =>{
+    res.render('news', {articles: newsAPI.data})
+})
+
+// const newsRouter = require('./routes/news')
+// app.use('/news', newsRouter)
+
+
+
 
 app.listen(8000, ()=>{
     console.log('you\'re listening to the spooky sounds of port 8000')
