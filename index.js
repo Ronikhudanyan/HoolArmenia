@@ -31,7 +31,7 @@ app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 
 // setting static folder
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(__dirname + '/public'));
 
 
 // body parser middleware (this makes req.body work)
