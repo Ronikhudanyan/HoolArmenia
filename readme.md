@@ -45,15 +45,13 @@ Website Used: Lucid.app
 2. Run npm i (this will install the dependencies)
 
 3. Run nodemon
-4. Setup your database and models, see table below:
+4. Setup your database and models
 
-<img width="820" alt="Screen Shot 2020-11-13 at 1 45 18 PM" src="https://user-images.githubusercontent.com/69879822/99109351-b1ab4800-25b6-11eb-993b-6ded6bafd3e0.png">
-
-6. Run the following code to migrate:
+5. Run the following code to migrate:
 
    - sequelize db:migrate
 
-7. Create a .env file, this will keep your port and session_secret private.
+6. Create a .env file, this will keep your port and session_secret private.
 
 - SESSION_SECRET (you choose this)
 - PORT= (choose the local host port you want)
