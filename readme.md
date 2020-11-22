@@ -43,14 +43,9 @@ Website Used: Lucid.app
 
 1. Fork and Clone this Repo.
 2. Run npm i (this will install the dependencies)
-3. Write this code in terminal to get a new key/token as they expire every hour:
 
-   - curl -d "grant_type=client_credentials&client_id=ljMVuaBoRMvZ0LmccLZsdk07fqTSXNNMsTXoMUJI2BGJhn0JGb&client_secret=rDLvLhzH0Yl6qt8VXvj266OqsSyjPC44NZVlOALV" https://api.petfinder.com/v2/oauth2/token
-
-     - The terminal will respond with a token. Copy the token and paste it inside the token variable in index.js and animal controller.
-
-4. Run nodemon
-5. Setup your database and models, see table below:
+3. Run nodemon
+4. Setup your database and models, see table below:
 
 <img width="820" alt="Screen Shot 2020-11-13 at 1 45 18 PM" src="https://user-images.githubusercontent.com/69879822/99109351-b1ab4800-25b6-11eb-993b-6ded6bafd3e0.png">
 
