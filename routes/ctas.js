@@ -20,7 +20,7 @@ router.get('/', (req, res) =>
     })
     console.log(calls)
   })
-  .catch(err => console.log(err)))
+  .catch(err => res.send(err)))
 
 
 
