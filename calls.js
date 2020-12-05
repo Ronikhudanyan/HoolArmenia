@@ -31,7 +31,7 @@
 
 
 const Sequelize = require('sequelize');
-const dBase = require('./config/database');
+const dBase = require('./config/config.json');
 
 const calls = dBase.define('call', {
   title: {
