@@ -1,11 +1,9 @@
 const express = require('express')
 const router = express.Router()
 const dBase = require('../config/database')
-const callsToAction = require('../calls')
 const Sequelize = require('sequelize');
 const db = require('../models');
-const calls = require('../calls');
-// const calls = require('../calls');
+
 const Op = Sequelize.Op;
 
 
@@ -13,7 +11,7 @@ const Op = Sequelize.Op;
 //Get list of items
 // router.get('/', (req, res) => res.send('CTAS!'))
 router.get('/', (req, res) => 
-  callsToAction.findAll()
+  db.calls.findAll()
   .then(calls=> {
     res.render('ctas', {
       calls
@@ -35,7 +33,7 @@ router.post('/add', (req, res) => {
   let error = []
 
 
-  callsToAction.create({
+  db.calls.create({
     title,
     description,
     contact_email,

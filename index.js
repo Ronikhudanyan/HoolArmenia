@@ -15,7 +15,11 @@ var methodOverride = require('method-override');
 const bodyParser = require('body-parser');
 const path = require('path');
 const dBase = require('./config/database')
-const mod = require ('./calls')
+// const mod = require ('./calls')
+const mod = require ('./models')
+const { read } = require('fs')
+const calls = require('./models/calls');
+const db = require('./models')
 
 //API Vars 
 
@@ -74,11 +78,23 @@ app.get('/profile', isLoggedIn, (req, res)=>{
 app.use(methodOverride('_method'));
 app.use('/ctas', require('./routes/ctas.js'))
 app.get('/ctas', (req, res) =>{
-    mod.findAll()
+    mod.calls.findAll()
     .then(calls =>{
      res.render('ctas', {calls:calls})   
     })    
     
+})
+
+
+//-----------> THIS IS WHAT I NEED HELP WITH <------------------------
+app.get('/ctas/:id', (req, res) => {
+    // let callIndex = req.params.id
+    // res.render('show', {listOfCalls: calls[callIndex], callName :callIndex})
+    res.render('show', {callCard:calls[db.]})
+})
+
+app.get('/ctas/edit/id', (req,res) => {
+    res.render('edit', callCard)
 })
 
 
