@@ -53,7 +53,7 @@ router.get('/search', (req, res) => {
     .catch(err => res.render('error', {error: err}));
 })
 
-router.delete('/ctas/:id', async(req, res)=>{
+router.findOne('/ctas/edit/:id', async(req, res)=>{
   let entry = await calls.findOne({where: {id: req.params.id}})
   calls.destroy()
   .then(calls => res.redirect('/ctas'))

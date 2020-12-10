@@ -88,9 +88,16 @@ app.get('/ctas', (req, res) =>{
 
 //-----------> THIS IS WHAT I NEED HELP WITH <------------------------
 app.get('/ctas/:id', (req, res) => {
-    // let callIndex = req.params.id
+    let id = req.params.id
     // res.render('show', {listOfCalls: calls[callIndex], callName :callIndex})
-    res.render('show', {callCard:calls[db.]})
+    // res.render('show', {callCard:calls[db.]})
+    mod.calls.findOne({
+        where: {
+            id:id
+        }
+    }).then(call =>{
+        res.render('show',{ call: id})
+    })
 })
 
 app.get('/ctas/edit/id', (req,res) => {

@@ -1,15 +1,19 @@
 
 
         <h1>Call To Action:</h1>
+        <% if(call.length>0) { %> 
+                <table>
+                <% for(var i=0; i<call.lenghth; i++) %>
+                <tr>
+                        <td><%= i %></td>
+                        <td><%= call[i].title %></td>
+                        <td><%= call[i].description %></td>
+                        <td><%= call[i].conact_email %></td>
+                        <td><%= call[i].contact_phone %></td>
+                </tr> 
 
-
-<h3><%= callCard.title %> </h3>
-      <p><%= callCard.description %></p>
-     
-        <li>Contact Email:<%= callCard.conact_email %></li>
-        <li>Contact Phone:<%= callCard.contact_phone %></li>
+        <% } %> 
         
-        
-        
+        </table>
         
       
