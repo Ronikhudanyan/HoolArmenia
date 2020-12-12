@@ -2,6 +2,7 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const ejsLayouts = require('express-ejs-layouts')
+// const mod = require ('./models')
 const session = require('express-session')
 const passport = require('./config/ppConfig.js')
 const flash = require('connect-flash')
@@ -15,15 +16,12 @@ app.use(methodOverride('_method'));
 const bodyParser = require('body-parser');
 const path = require('path');
 const dBase = require('./config/database')
-// const mod = require ('./calls')
-const mod = require ('./models')
-const { read } = require('fs')
-const calls = require('./models/calls');
-const db = require('./models')
+
+
 
 //API Vars 
 
-console.log("111111111111111111111111111111111111111111111111111111111111111111")
+
 
 dBase.authenticate()
   .then(() => console.log('Database connected...'))
@@ -75,36 +73,10 @@ app.get('/', (req, res)=>{
 app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
-console.log("2222222222222222222222222222222222222222")
+
 
 
 app.use('/ctas', require('./routes/ctas.js'))
-app.get('/ctas', (req, res) =>{
-    mod.calls.findAll()
-    .then(calls =>{
-     res.render('ctas', {calls:calls})   
-    })    
-    
-})
-
-
-//-----------> THIS IS WHAT I NEED HELP WITH <------------------------
-// app.get('/ctas/:id', (req, res) => {
-//     let id = req.params.id
-//     // res.render('show', {listOfCalls: calls[callIndex], callName :callIndex})
-//     // res.render('show', {callCard:calls[db.]})
-//     mod.calls.findOne({
-//         where: {
-//             id:id
-//         }
-//     }).then(call =>{
-//         res.render('show',{ call: id})
-//     })
-// })
-
-// app.get('/ctas/edit/:id', (req,res) => {
-//     res.render('edit', callCard)
-// })
 
 
 
@@ -114,8 +86,7 @@ app.get('/news', (req,res) =>{
     res.render('news', {articles: newsAPI.data})
 })
 
-// const newsRouter = require('./routes/news')
-// app.use('/news', newsRouter)
+
 
 
 app.listen(process.env.PORT || 8000, ()=>{
