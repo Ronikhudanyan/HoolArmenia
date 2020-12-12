@@ -1,6 +1,6 @@
 require('dotenv').config()
 const express = require('express')
-//const app = express()
+const app = express()
 const ejsLayouts = require('express-ejs-layouts')
 const session = require('express-session')
 const passport = require('./config/ppConfig.js')
@@ -9,7 +9,7 @@ const isLoggedIn = require('./middleware/isLoggedIn')
 
 const axios = require ('axios')
 var methodOverride = require('method-override');
-
+app.use(methodOverride('_method'));
 
 //Calls to action Vars
 const bodyParser = require('body-parser');
@@ -23,12 +23,13 @@ const db = require('./models')
 
 //API Vars 
 
+console.log("111111111111111111111111111111111111111111111111111111111111111111")
 
 dBase.authenticate()
   .then(() => console.log('Database connected...'))
   .catch(err => console.log('Error: ' + err))
 
-const app = express();
+
 
 //  setup ejs and ejs layouts
 app.set('view engine', 'ejs')
@@ -74,8 +75,9 @@ app.get('/', (req, res)=>{
 app.get('/profile', isLoggedIn, (req, res)=>{
     res.render('profile')
 })
+console.log("2222222222222222222222222222222222222222")
 
-app.use(methodOverride('_method'));
+
 app.use('/ctas', require('./routes/ctas.js'))
 app.get('/ctas', (req, res) =>{
     mod.calls.findAll()
@@ -87,22 +89,22 @@ app.get('/ctas', (req, res) =>{
 
 
 //-----------> THIS IS WHAT I NEED HELP WITH <------------------------
-app.get('/ctas/:id', (req, res) => {
-    let id = req.params.id
-    // res.render('show', {listOfCalls: calls[callIndex], callName :callIndex})
-    // res.render('show', {callCard:calls[db.]})
-    mod.calls.findOne({
-        where: {
-            id:id
-        }
-    }).then(call =>{
-        res.render('show',{ call: id})
-    })
-})
+// app.get('/ctas/:id', (req, res) => {
+//     let id = req.params.id
+//     // res.render('show', {listOfCalls: calls[callIndex], callName :callIndex})
+//     // res.render('show', {callCard:calls[db.]})
+//     mod.calls.findOne({
+//         where: {
+//             id:id
+//         }
+//     }).then(call =>{
+//         res.render('show',{ call: id})
+//     })
+// })
 
-app.get('/ctas/edit/id', (req,res) => {
-    res.render('edit', callCard)
-})
+// app.get('/ctas/edit/:id', (req,res) => {
+//     res.render('edit', callCard)
+// })
 
 
 

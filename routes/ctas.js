@@ -6,7 +6,7 @@ const db = require('../models');
 
 const Op = Sequelize.Op;
 
-
+console.log("we are in the ctas controller>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
 //Get list of items
 // router.get('/', (req, res) => res.send('CTAS!'))
@@ -16,7 +16,7 @@ router.get('/', (req, res) =>
     res.render('ctas', {
       calls
     })
-    console.log(calls)
+    // console.log(calls)
   })
   .catch(err => res.send(err)))
 
@@ -53,7 +53,8 @@ router.get('/search', (req, res) => {
     .catch(err => res.render('error', {error: err}));
 })
 
-router.findOne('/ctas/edit/:id', async(req, res)=>{
+router.delete('/ctas/:id', async(req, res)=>{
+  console.log(req.params.id)
   let entry = await calls.findOne({where: {id: req.params.id}})
   calls.destroy()
   .then(calls => res.redirect('/ctas'))
