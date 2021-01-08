@@ -53,15 +53,16 @@ router.get('/search', (req, res) => {
     .catch(err => res.render('error', {error: err}));
 })
 
-router.delete('/ctas/:id', async(req, res)=>{
-  console.log(req.params.id)
-  let entry = await calls.findOne({where: {id: req.params.id}})
-  calls.destroy()
-  .then(calls => res.redirect('/ctas'))
-  .catch(err => console.log(err))
+// router.delete('/ctas/:id', async(req, res)=>{
+//   console.log(req.params.id)
+//   let entry = await calls.findOne({where: {id: req.params.id}})
+//   calls.destroy()
+//   .then(calls => res.redirect('/ctas'))
+//   .catch(err => console.log(err))
 
 
-})
+// })
+
 
 module.exports = router;
 

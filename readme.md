@@ -61,3 +61,21 @@ Website Used: Lucid.app
 API Info:
 
 newsapi.org
+
+<!-- <div class="wrapper">
+    <div class="news">
+        <% if(articles != null) { %>
+    <%articles.slice(-12).forEach(article => { %>
+
+        <a href="<%- article.url %>" class="card">
+            <img src="<%- article.urlToImage  %> " alt="<%- article.title %>">
+            <h2><%- article.title %></h2>
+            <p><%- article.description %></p>
+        </a>
+
+        <% }) %>
+        <% } else { %>
+            No posts found.
+        <% } %>
+    </div>
+  </div> -->

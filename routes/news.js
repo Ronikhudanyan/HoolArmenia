@@ -9,8 +9,9 @@ router.get('', async(req, res) =>{
     try {
         const newsAPI = await axios.get(`https://newsapi.org/v2/everything?q=armenia&apiKey=1d9ca5b13652436b801f9572b8878b27`)
         console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        console.log(newsAPI.data)
+        console.log(newsAPI.data.articles)
         res.render('news', { articles : newsAPI.data.articles })
+        
     } catch (err) {
         if(err.response){
             console.log(err.response.data)

@@ -1,9 +1,14 @@
 <h1>Current Calls to Actions That Need Your Help</h1>
 
 <style>
+  body {
+    background-image: url("../img/papik.jpg");
+    background-size:cover;
+  }
 h1{
   text-align: center;
     margin-top: 3;
+    color: var(--primary-color);
 }
 </style>
 <section id="gigs" class="container">
@@ -16,9 +21,6 @@ h1{
         <li>Contact Email:<%= listOfCalls.conact_email %></li>
         <li>Contact Phone:<%= listOfCalls.contact_phone %></li>
         <li><a href="/profile" class="btn btn-reverse">Take Action</a></li>
-        <form method="POST" action="/ctas/<%= listOfCalls.id %>/?_method=DELETE">
-          <input type="submit" value="Delete">
-        </form>
       </ul>
       <div class="tech">
         <small></span></small>

@@ -1,11 +1,21 @@
 <% if (alerts.error) { %> 
     <% alerts.error.forEach(msg=>{ %>
-        <%= msg %> 
+    <div id="erroralert" class="alert alert-danger alert-dismissible fade show" role="alert">
+                <%= msg %> 
+    <button id="errorbtn" type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>  
     <% }) %>
 <% } %>
 
 <% if (alerts.success) { %> 
     <% alerts.success.forEach(msg=>{ %>
-        <%= msg %> 
+<div id="sucalert" class="alert alert-success alert-dismissible fade show" role="alert">
+            <%= msg %> 
+<button id="sucalertbtn" type="button" class="close" data-dismiss="alert" aria-label="Close">
+  <span aria-hidden="true">&times;</span>
+</button>
     <% }) %>
 <% } %>
+

@@ -7,19 +7,46 @@
 </head>
 <body>
   <h1>News from Armenia</h1>  
+ 
 
+  
   <div class="wrapper">
     <div class="news">
         <% if(articles != null) { %>
-    <%articles.forEach(article => { %> 
-        
-        <a href="<%- article.url %>" class="card">
-            <img src="<%- article.urlToImage  %> " alt="<%- article.title %>">
-            <h2><%- article.title %></h2>
-            <p><%- article.description %></p>
+    <%articles.slice(0,5).forEach(article => { %>
+        <div class="property-card">
+            <a href="<%- article.url %>">
+            <div class="property-image">
+                <img class="newsImg" src="<%- article.urlToImage  %> " alt="<%- article.title %>">
+                <div class="property-image-title">
+            
+                <h1 class="articletitle"><%- article.title %></h1>
+            <!-- <p><%- article.description %></p> -->
+        </div>
+        </div>
         </a>
-   
-        <% }) %> 
+        </div>
+        <% }) %>
+        <% } else { %>
+            No posts found.
+        <% } %>
+    </div>
+    <div class="news">
+        <% if(articles != null) { %>
+    <%articles.slice(7,12).forEach(article => { %>
+        <div class="property-card">
+            <a href="<%- article.url %>">
+            <div class="property-image">
+                <img class="newsImg" src="<%- article.urlToImage  %> " alt="<%- article.title %>">
+                <div class="property-image-title">
+            
+                <h1 class="articletitle"><%- article.title %></h1>
+            <!-- <p><%- article.description %></p> -->
+        </div>
+        </div>
+        </a>
+        </div>
+        <% }) %>
         <% } else { %>
             No posts found.
         <% } %>
@@ -27,7 +54,160 @@
   </div>
 
 
-
 </body>
 </html>
 
+
+<style>
+body
+{
+    background-image:url('./img/land.jpg');
+    background-size: cover;
+  background-color:#f2f2f2;
+  font-family: 'RobotoDraft', 'Roboto', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+*
+{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+
+/* {
+  margin:0px;
+  font-size:1.4em;
+  font-weight:700;
+} */
+
+p
+{
+  font-size:12px;
+}
+
+.wrapper
+{
+  height:100vh;
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* End Non-Essential  */
+.newsImg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    size:cover;
+    /* margin:auto; */
+}
+
+.property-card {
+    background-color: #b7dae4;
+  height:25em;
+  width:20em;
+  display:-webkit-box;
+  display:-ms-flexbox;
+  display:flex;
+  -webkit-box-orient:vertical;
+  -webkit-box-direction:normal;
+  -ms-flex-direction:column;
+  flex-direction:column;
+  position:relative;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  border-radius:16px;
+  overflow:hidden;
+  -webkit-box-shadow:  15px 15px 27px #e1e1e379, -15px -15px 27px#e1e1e379;
+  box-shadow:  15px 15px 27px #e1e1e379, -15px -15px 27px #e1e1e379;
+}
+/* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
+
+/* Top Half of card, image. */
+
+.property-image 
+{
+  height:10em;
+  width:20em;
+  /* padding:1em 2em; */
+  position:absolute;
+  top:0px;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  /* background-image:url('https://cdn.photographylife.com/wp-content/uploads/2017/01/What-is-landscape-photography.jpg'); */
+  background-color: var(--primary-color);
+  background-size:cover;
+  background-repeat:no-repeat;
+}
+
+/* Bottom Card Section */
+
+.property-description
+{
+  background-color: #89b2bd;
+  height:15em;
+  width:18em;
+  position:absolute;
+  bottom:0em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  padding: 0.5em 1em;
+  text-align:center;
+
+}
+
+/* Social Icons */
+
+.property-social-icons
+{
+  width:1em;
+  height:1em;
+  background-color:black;
+  position:absolute;
+  bottom:1em;
+  left:1em;
+  -webkit-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  -o-transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* Property Cards Hover States */
+
+.property-card:hover .property-description
+{
+  height:0em;
+  padding:0px 1em;
+}
+.property-card:hover .property-image
+{
+  height:23em;
+  width: 30em;
+}
+
+.property-card:hover .property-social-icons
+{
+  background-color:white;
+}
+
+.property-card:hover .property-social-icons:hover
+{
+  background-color:blue;
+  cursor:pointer;
+}
+.articletitle{
+    
+    display: block;
+    font-size: 1.4rem;
+    margin-top:2%;
+    font-weight:normal;
+    padding:15%;
+    box-shadow: 0px -6px 0px 0px rgba(0, 64, 92, 0.351);
+   color: black;
+}
+</style>

@@ -83,7 +83,7 @@ app.use('/ctas', require('./routes/ctas.js'))
 app.use('/news', require('./routes/news.js'))
 app.use('/article', require('./routes/news.js'))
 app.get('/news', (req,res) =>{
-    res.render('news', {articles: newsAPI.data})
+    res.render('news', {articles: newsAPI.data}, {articlesImg: newsAPI.data.urlToImage})
 })
 
 
