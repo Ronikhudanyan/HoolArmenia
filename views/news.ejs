@@ -6,14 +6,14 @@
     <title>AM News</title>
 </head>
 <body>
-  <h1>News from Armenia</h1>  
+  <h1 class="newsAM">News from Armenia</h1>  
  
 
   
   <div class="wrapper">
     <div class="news">
         <% if(articles != null) { %>
-    <%articles.slice(0,5).forEach(article => { %>
+    <%articles.slice(0,4).forEach(article => { %>
         <div class="property-card">
             <a href="<%- article.url %>">
             <div class="property-image">
@@ -31,9 +31,12 @@
             No posts found.
         <% } %>
     </div>
+    <br></br>
+    <br></br>
+    <br></br>
     <div class="news">
         <% if(articles != null) { %>
-    <%articles.slice(7,12).forEach(article => { %>
+    <%articles.slice(7,11).forEach(article => { %>
         <div class="property-card">
             <a href="<%- article.url %>">
             <div class="property-image">
@@ -75,11 +78,9 @@ body
 }
 
 
-/* {
-  margin:0px;
-  font-size:1.4em;
-  font-weight:700;
-} */
+.newsAM{
+  margin-left: 40%;
+}
 
 p
 {
@@ -91,8 +92,9 @@ p
   height:100vh;
   width:100%;
   display: flex;
-  justify-content: center;
+  justify-content: center space-around;
   align-items: center;
+
 }
 
 /* End Non-Essential  */
@@ -107,8 +109,8 @@ p
 
 .property-card {
     background-color: #b7dae4;
-  height:25em;
-  width:20em;
+  height:20em;
+  width:17em;
   display:-webkit-box;
   display:-ms-flexbox;
   display:flex;
@@ -122,8 +124,8 @@ p
   transition:all 0.4s cubic-bezier(0.645, 0.045, 0.355, 1);
   border-radius:16px;
   overflow:hidden;
-  -webkit-box-shadow:  15px 15px 27px #e1e1e379, -15px -15px 27px#e1e1e379;
-  box-shadow:  15px 15px 27px #e1e1e379, -15px -15px 27px #e1e1e379;
+  -webkit-box-shadow:  15px 15px 27px #00000079, -15px -15px 27px#00000079;
+  box-shadow:  15px 15px 27px #00000079, -15px -15px 27px #00000079;
 }
 /* ^-- The margin bottom is necessary for the drop shadow otherwise it gets clipped in certain cases. */
 
@@ -131,8 +133,11 @@ p
 
 .property-image 
 {
-  height:10em;
-  width:20em;
+  height:50%;
+  width:100%;
+  size: cover;
+  /* height:10em;
+  width:20em; */
   /* padding:1em 2em; */
   position:absolute;
   top:0px;
@@ -186,7 +191,7 @@ p
 }
 .property-card:hover .property-image
 {
-  height:23em;
+  height:20em;
   width: 30em;
 }
 
@@ -203,10 +208,10 @@ p
 .articletitle{
     
     display: block;
-    font-size: 1.4rem;
-    margin-top:2%;
+    font-size: 1.2rem;
+    margin-top:1%;
     font-weight:normal;
-    padding:15%;
+    padding:10%;
     box-shadow: 0px -6px 0px 0px rgba(0, 64, 92, 0.351);
    color: black;
 }
